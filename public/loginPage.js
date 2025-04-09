@@ -4,6 +4,7 @@ newUser.loginFormCallback = (data) => {
     ApiConnector.login(data, (response) => {
         console.log('Ответ сервера:', response);
         if (response.success) {
+            alert(`Пользователь ${data.login} успешно авторизован`);
             location.reload();
         } else {
             alert(newUser.loginErrorMessageBox.innerHTML);
@@ -12,15 +13,19 @@ newUser.loginFormCallback = (data) => {
         
 }
 
-
 newUser.registerFormCallback = (data) => {
     console.log('Отправка данных:', data);
     ApiConnector.register(data, (response) => {
         console.log('Ответ сервера:', response);
         if (response.success) {
+            alert(`Пользователь ${data.login} успешно зарегистрирован`)
             location.reload();
         } else {
-            alert(newUser.registerErrorMessageBox.innerHTML);
+            console.log(response);
+            alert(response.error);
         }
     })
 }
+
+
+
